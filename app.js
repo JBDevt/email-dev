@@ -18,7 +18,7 @@ ScrollTrigger.matchMedia({
         scrub: 1,
         // snap: 1 / (sections.length - 1),
         // base vertical scrolling on how wide the container is so it feels more natural.
-        end: () => "+=3500",
+        end:  () => "+=" + document.querySelector('.container').offsetWidth-window.innerWidth,
       },
     });
     if ($(window).width() > 991) {
@@ -29,15 +29,6 @@ ScrollTrigger.matchMedia({
         gsap.to("html", { scrollTo: left, duration: 1.5 });
       });
     }
-
-    const getMaxWidth = () => {
-      maxWidth = 0;
-      sections.forEach((section) => {
-        maxWidth += section.offsetWidth;
-      });
-    };
-    getMaxWidth();
-    ScrollTrigger.addEventListener("refreshInit", getMaxWidth);
 
     gsap.to("#svg-one", {
       x: -500,
